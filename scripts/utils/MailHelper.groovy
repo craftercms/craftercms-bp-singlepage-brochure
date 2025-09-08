@@ -12,18 +12,17 @@ class MailHelper {
 
     def MailHelper(freeMarkerConfig) {
         def javaMailProperties = new Properties()
-            javaMailProperties["mail.smtp.auth"] = "false"
-                javaMailProperties["mail.smtp.starttls.enable"] = "false"
+        javaMailProperties["mail.smtp.auth"] = "false"
+        javaMailProperties["mail.smtp.starttls.enable"] = "false"
 
         def mailSender = new JavaMailSenderImpl()
-            mailSender.host = "localhost"
-            mailSender.port = 25
-            mailSender.protocol = "smtp"
-            mailSender.defaultEncoding = "UTF-8"
-            mailSender.javaMailProperties = javaMailProperties
+        mailSender.host = "localhost"
+        mailSender.port = 25
+        mailSender.protocol = "smtp"
+        mailSender.defaultEncoding = "UTF-8"
+        mailSender.javaMailProperties = javaMailProperties
 
-        emailFactory = new EmailFactoryImpl()
-        emailFactory.mailSender = mailSender
+        emailFactory = new EmailFactoryImpl(mailSender)
         emailFactory.freeMarkerConfig = freeMarkerConfig
     }
 
